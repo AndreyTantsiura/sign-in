@@ -64,6 +64,7 @@ export const InputTypeText = styled.input`
   appearance: none;
   box-shadow: 0px 0px 4px #eee;
   max-width: 100%;
+  outline: none;
 `;
 
 export const InputTypeSubmit = styled.input`
@@ -84,4 +85,14 @@ export const InputTypeSubmit = styled.input`
     background-color: #f8ae4e;
     cursor: pointer;
   }
+`;
+
+export const Modal = styled.div`
+  padding: 8px 16px;
+  margin: 8px 0;
+  border: 2px solid rgb(0, 176, 48);
+  background-color: rgb(192, 255, 176);
+  color: rgb(0, 64, 0);
+  border-radius: 8px;
+  
 `;

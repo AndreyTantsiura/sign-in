@@ -1,4 +1,6 @@
-import React from "react";
+import { React, useState } from "react";
+import axios from "axios";
+import { Switch, Route, Link } from "react-router-dom";
 import {
   Content,
   Logo,
@@ -9,14 +11,33 @@ import {
   Label,
   InputTypeText,
   InputTypeSubmit,
+  Modal,
 } from "./StyleFormComp";
-import axios from "axios";
 
 const FormComp = () => {
+  const [getIp, setGetIp] = useState("");
+  const [getPhone, setGetPhone] = useState("");
+
   const postRequest = () => {
+    axios
+      .get(`http://ip-api.com/json?callback`)
+      .then((res) => setGetIp(res.data.query));
+
     const response = axios.patch("https://193.200.173.188:9876/?getsomething");
     return response;
   };
+
+  const phonelHandler = (e) => {
+    const passCheck = new RegExp(/^\+?3?8?(0\d{9})$/);
+    setGetPhone(e.target.value);
+
+    if (e.target.value.match(passCheck)) {
+      e.target.style.borderColor = "green";
+    } else {
+      e.target.style.borderColor = "red";
+    }
+  };
+
   return (
     <Content>
       <Logo>
@@ -37,18 +58,30 @@ const FormComp = () => {
           <P>
             <Label>Ваш мобильный телефон:</Label>
             <InputTypeText
-              type="text"
+              type="tel"
               autocomplete="off"
               name="tel"
               size="12"
+              onChange={(e) => phonelHandler(e)}
             />
           </P>
           <P>
-            <InputTypeSubmit
-              type="submit"
-              value=" Відправити "
-              onClick={postRequest}
-            />
+            <Link to="/ip_added">
+              <InputTypeSubmit
+                type="submit"
+                value=" Відправити "
+                onClick={postRequest}
+              />
+            </Link>
+            <Switch>
+              <Route path="/ip_added">
+                <Modal>
+                  Вашу IP-адресу {getIp} додано до списку дозволених - тепер у
+                  вас є можливість підключатися до мережевих ресурсів. Плідної
+                  роботи!
+                </Modal>
+              </Route>
+            </Switch>
           </P>
         </Form>
       </Logo>
