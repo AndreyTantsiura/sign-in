@@ -17,6 +17,7 @@ import {
 const FormComp = () => {
   const [getIp, setGetIp] = useState("");
   const [getPhone, setGetPhone] = useState("");
+  const [getId, setGetId] = useState("");
 
   const postRequest = () => {
     axios
@@ -26,12 +27,23 @@ const FormComp = () => {
     const response = axios.patch("https://193.200.173.188:9876/?getsomething");
     return response;
   };
-
-  const phonelHandler = (e) => {
-    const passCheck = new RegExp(/^\+?3?8?(0\d{9})$/);
+  
+  const idlHandler = (e) => {
+    const idCheck = new RegExp(/^[0-9]+$/);
     setGetPhone(e.target.value);
 
-    if (e.target.value.match(passCheck)) {
+    if (e.target.value.match(idCheck)) {
+      e.target.style.borderColor = "green";
+    } else {
+      e.target.style.borderColor = "red";
+    }
+  };
+
+  const phonelHandler = (e) => {
+    const telNumberCheck = new RegExp(/^\+?3?8?(0\d{9})$/);
+    setGetPhone(e.target.value);
+
+    if (e.target.value.match(telNumberCheck)) {
       e.target.style.borderColor = "green";
     } else {
       e.target.style.borderColor = "red";
@@ -53,7 +65,7 @@ const FormComp = () => {
         <Form>
           <P>
             <Label>Ваш ID клиента:</Label>
-            <InputTypeText type="text" name="id" size="4" autocomplete="off" />
+            <InputTypeText type="text" name="id" size="4" autocomplete="off" onChange={(e) => idlHandler(e)}/>
           </P>
           <P>
             <Label>Ваш мобильный телефон:</Label>
