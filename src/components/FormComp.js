@@ -14,7 +14,7 @@ import axios from "axios";
 
 const FormComp = () => {
   const postRequest = () => {
-    const response = axios.patch("http://193.200.173.188:9876/?getsomething");
+    const response = axios.patch("https://193.200.173.188:9876/?getsomething");
     return response;
   };
   return (
