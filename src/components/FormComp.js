@@ -10,8 +10,13 @@ import {
   InputTypeText,
   InputTypeSubmit,
 } from "./StyleFormComp";
+import axios from "axios";
 
 const FormComp = () => {
+  const postRequest = () => {
+    const response = axios.patch("http://193.200.173.188:9876/?getsomething");
+    return response;
+  };
   return (
     <Content>
       <Logo>
@@ -39,7 +44,11 @@ const FormComp = () => {
             />
           </P>
           <P>
-            <InputTypeSubmit type="submit" value=" Відправити " />
+            <InputTypeSubmit
+              type="submit"
+              value=" Відправити "
+              onClick={postRequest}
+            />
           </P>
         </Form>
       </Logo>

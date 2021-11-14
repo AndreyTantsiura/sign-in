@@ -39,7 +39,7 @@ export const H1 = styled.h1`
   color: #666;
 `;
 
-export const P = styled.p`
+export const P = styled.div`
   margin: 8px 0;
   text-align: justify;
 `;
