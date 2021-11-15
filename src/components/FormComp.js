@@ -13,6 +13,7 @@ import {
   InputTypeSubmit,
   Modal,
 } from "./StyleFormComp";
+import logo from "../img/logo_dark.png";
 
 const FormComp = () => {
   const [getIp, setGetIp] = useState("");
@@ -27,15 +28,15 @@ const FormComp = () => {
     const response = axios.patch("https://193.200.173.188:9876/?getsomething");
     return response;
   };
-  
+
   const idlHandler = (e) => {
     const idCheck = new RegExp(/^[0-9]+$/);
-    setGetPhone(e.target.value);
+    setGetId(e.target.value);
 
     if (e.target.value.match(idCheck)) {
-      e.target.style.borderColor = "green";
+      e.target.style.border = "2px solid green";
     } else {
-      e.target.style.borderColor = "red";
+      e.target.style.border = "2px solid red";
     }
   };
 
@@ -44,16 +45,16 @@ const FormComp = () => {
     setGetPhone(e.target.value);
 
     if (e.target.value.match(telNumberCheck)) {
-      e.target.style.borderColor = "green";
+      e.target.style.border = "2px solid green";
     } else {
-      e.target.style.borderColor = "red";
+      e.target.style.border = "2px solid red";
     }
   };
 
   return (
     <Content>
       <Logo>
-        <Img src="http://informatika.in.ua/system/img/logo_dark.png" alt="" />
+        <Img src={logo} alt="" />
         <H1> Відкриття доступу до мережі</H1>
         <P>
           Дорогі клієнти! Для забезпечення безпеки віддалений доступ до
@@ -65,7 +66,13 @@ const FormComp = () => {
         <Form>
           <P>
             <Label>Ваш ID клиента:</Label>
-            <InputTypeText type="text" name="id" size="4" autocomplete="off" onChange={(e) => idlHandler(e)}/>
+            <InputTypeText
+              type="text"
+              name="id"
+              size="4"
+              autocomplete="off"
+              onChange={(e) => idlHandler(e)}
+            />
           </P>
           <P>
             <Label>Ваш мобильный телефон:</Label>
@@ -75,6 +82,7 @@ const FormComp = () => {
               name="tel"
               size="12"
               onChange={(e) => phonelHandler(e)}
+              placeholder="+380"
             />
           </P>
           <P>
