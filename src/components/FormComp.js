@@ -19,10 +19,11 @@ const FormComp = () => {
   const [getIp, setGetIp] = useState("");
   const [getPhone, setGetPhone] = useState("");
   const [getId, setGetId] = useState("");
+  console.log(getIp);
 
   const postRequest = () => {
     axios
-      .get(`http://ip-api.com/json?callback`)
+      .get("http://ip-api.com/json?callback")
       .then((res) => setGetIp(res.data.query));
 
     const response = axios.patch("https://193.200.173.188:9876/?getsomething");
