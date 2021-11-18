@@ -4,7 +4,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import {
   Content,
   Logo,
-  Img,
   H1,
   P,
   Form,
@@ -13,7 +12,6 @@ import {
   InputTypeSubmit,
   Modal,
 } from "./StyleFormComp";
-import logo from "../img/logo_dark.png";
 
 const FormComp = () => {
   const [getIp, setGetIp] = useState("");
@@ -55,7 +53,6 @@ const FormComp = () => {
   return (
     <Content>
       <Logo>
-        <Img src={logo} alt="" />
         <H1> Відкриття доступу до мережі</H1>
         <P>
           Дорогі клієнти! Для забезпечення безпеки віддалений доступ до

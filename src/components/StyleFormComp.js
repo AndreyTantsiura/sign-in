@@ -26,11 +26,6 @@ export const Logo = styled.div`
   vertical-align: baseline;
 `;
 
-export const Img = styled.img`
-  max-width: 100%;
-  height: auto;
-`;
-
 export const H1 = styled.h1`
   font-size: 24px;
   margin: 8px auto;
