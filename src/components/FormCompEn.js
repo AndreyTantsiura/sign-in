@@ -10,12 +10,12 @@ import {
   Label,
   InputTypeText,
   InputTypeSubmit,
-  Lang
+  Lang,
 } from "./StyleFormComp";
-import EN from "../img/united-kingdom.png"
-import ModalFormComp from "./ModalFormComp";
+import UA from "../img/ukraine.png";
+import ModalFormCompEn from "./ModalFormCompEn";
 
-const FormComp = (props) => {
+const FormCompEn = () => {
   const [getIp, setGetIp] = useState("");
   const [getPhone, setGetPhone] = useState("");
   const [getId, setGetId] = useState("");
@@ -44,7 +44,7 @@ const FormComp = (props) => {
   };
 
   const phonelHandler = (e) => {
-    const telNumberCheck = new RegExp(/^\+?3?8?(0\d{9})$/);
+    const telNumberCheck = new RegExp(/^\+?(\d{12})$/);
     setGetPhone(e.target.value);
 
     if (e.target.value.match(telNumberCheck)) {
@@ -57,20 +57,21 @@ const FormComp = (props) => {
   return (
     <Content>
       <Lang>
-        <Link to={`${match.path}en`}><img src={EN} alt="EN"/></Link>
+        <Link to="/">
+          <img src={UA} alt="UA" />
+        </Link>
       </Lang>
       <Logo>
-        <H1> Відкриття доступу до мережі</H1>
+        <H1>Opening network access</H1>
         <P>
-          Дорогі клієнти! Для забезпечення безпеки віддалений доступ до
-          мережевих ресурсів обмежується певним списком IP адрес. Щоб тимчасово
-          відкрити доступ з вашого інтернет-каналу, будь ласка, заповніть форму
-          нижче, натисніть "Відправити". Вашу поточну IP адресу буде додано до
-          списку дозволених на 48 годин.
+          Dear customers! For security, remote access to network resources are
+          limited to a specific list of IP addresses. Temporarily fill in the
+          form to access your internet channel click "Submit" below. Your
+          current IP address will be added to list of permitted for 48 hours.
         </P>
         <Form>
           <P>
-            <Label>Ваш ID клиента:</Label>
+            <Label>Your customer ID:</Label>
             <InputTypeText
               type="text"
               name="id"
@@ -80,27 +81,26 @@ const FormComp = (props) => {
             />
           </P>
           <P>
-            <Label>Ваш мобильный телефон:</Label>
+            <Label>Your mobile phone:</Label>
             <InputTypeText
               type="tel"
               autocomplete="off"
               name="tel"
               size="12"
               onChange={(e) => phonelHandler(e)}
-              placeholder="+380"
             />
           </P>
           <P>
-            <Link to={`${match.path}ip_added`}>
+            <Link to={`${match.path}/ip_added`}>
               <InputTypeSubmit
                 type="submit"
-                value=" Відправити "
+                value=" Submit "
                 onClick={postRequest}
               />
             </Link>
             <Switch>
-              <Route path={`${match.path}ip_added`}>
-                <ModalFormComp postRequest={getIp} />
+              <Route path={`${match.path}/ip_added`}>
+                <ModalFormCompEn postRequest={getIp} />
               </Route>
             </Switch>
           </P>
@@ -110,4 +110,4 @@ const FormComp = (props) => {
   );
 };
 
-export default FormComp;
+export default FormCompEn;

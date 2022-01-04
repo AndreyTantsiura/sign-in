@@ -89,5 +89,8 @@ export const Modal = styled.div`
   background-color: rgb(192, 255, 176);
   color: rgb(0, 64, 0);
   border-radius: 8px;
-  
+`;
+
+export const Lang = styled.div`
+  text-align: end;
 `;
